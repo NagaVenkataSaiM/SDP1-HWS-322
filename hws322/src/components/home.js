@@ -8,8 +8,7 @@ class Home extends Component {
       <Container>
         <h1>Home</h1>
         <p>
-          <Link to="/login">Login</Link>
-        </p>
+          <Link to="/login">Login</Link>        </p>
         <p>
           <Link to="/signup">Sign up </Link>
         </p>
