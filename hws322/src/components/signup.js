@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Container } from "react-bootstrap";
 
-class Login extends Component {
+class Signup extends Component {
   render() {
     return (
-      <h>Login</h>
+      <h>signup</h>
     );
   }
 }
 
-export default Login;
+export default Signup;
