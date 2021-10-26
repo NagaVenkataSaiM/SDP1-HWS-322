@@ -1,7 +1,33 @@
 body {
   font-family: "Roboto", sans-serif;
   background-color: #f8fafb; }
-
+   .wave-container {
+  background: lightblue;
+}
+.float-left{
+  float: left;
+}
+body-home{
+  background-color: lightblue;
+  clip-path: polygon(
+    0 0,
+    200% -350%,
+    80% 100%,
+    0 30%
+  );
+}
+.wave-container > svg {
+  display: block;
+}
+.home-container{
+background-color: lightblue;
+  width: 1000px;
+  border: 1px solid green;
+  padding: 50px;
+  height: 200px;
+  margin: 200px;
+   float: left;
+}
 p {
   color: #b3b3b3;
   font-weight: 300; }
