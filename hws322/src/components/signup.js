@@ -1,13 +1,46 @@
 import Button from "@restart/ui/esm/Button";
-import React, { Component } from "react";
-import { useState } from "react";
+import React, { Component,useState } from "react";
+
 import { Container } from "react-bootstrap";
 import doctor from './images/doctor_page.jpg'
-import { Link } from "react-router-dom";
+import { Link , useHistory} from "react-router-dom";
 import {Checkmark} from 'react-checkmark';
+import axios from "axios"
 
 
 const Signup=()=>{
+   const history = useHistory()
+
+    const [ user, setUser] = useState({
+        name: "",
+        email:"",
+        password:"",
+        reEnterPassword: "",
+        phonenumber: ""
+    })
+
+    const handleChange = e => {
+        const { name, value } = e.target
+        setUser({
+            ...user,
+            [name]: value
+        })
+    }
+
+    const register = () => {
+        const { name, email, password, reEnterPassword ,phonenumber} = user
+        if( name && email && password && (password === reEnterPassword)){
+            axios.post("http://localhost:9002/register", user)
+            .then( res => {
+                alert(res.data.message)
+                history.push("/login")
+            })
+        } else {
+            alert("invalid input")
+        }
+        
+    }
+
   const[flag,setFlag]=useState(0)
   
   const setFlagtoone=()=>{setFlag(1)}
@@ -144,29 +177,29 @@ if(flag===5){
               <div class="mb-4">
               <h3>SignUp</h3>
             </div>
-            <form action="#" method="post">
+           
 
             <div class="form-group first">
     
-                <input type="text" class="form-control" placeholder='Full Name' id="username"></input>
+                <input type="text" name="name" value={user.name}  class="form-control" placeholder='Full Name' id="username" onChange={ handleChange }></input>
               </div>
  
               <div class="form-group ">
-               <input type="email" class="form-control" placeholder='Email' id="email"></input>
+               <input type="email" name="email" value={user.email} class="form-control" placeholder='Email' id="email" onChange={ handleChange }></input>
               </div>
 
               <div class="form-group">
 
-                <input type="number" class="form-control" placeholder='Mobile number' id="phoneno"></input>
+                <input type="number" name="phonenumber" value={user.phonenumber} class="form-control" placeholder='Mobile number' id="phoneno" onChange={ handleChange }></input>
               </div>
             
               <div class="form-group">
-                <input type="password" class="form-control" placeholder='Password' id="password"></input>
+                <input type="password" name="password" value={user.password} class="form-control" placeholder='Password' id="password" onChange={ handleChange }></input>
                 
               </div>
 
               <div class="form-group">
-                <input type="password" class="form-control" placeholder='Re-enter password' id="repassword"></input>
+                <input type="password" name="reEnterPassword" value={user.reEnterPassword} class="form-control" placeholder='Re-enter password' id="repassword" onChange={ handleChange }></input>
                 
               </div>
 
@@ -192,9 +225,9 @@ if(flag===5){
               </div>
 
 
-              <button type="submit" value="Next" onClick={()=>{setFlag(4)}} class="btn btn-block btn-primary">Next</button>
+              <button type="submit" value="Next" onClick={register} class="btn btn-block btn-primary">Next</button>
             
-            </form>
+            
             </div>
           </div>
           
