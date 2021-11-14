@@ -18,18 +18,23 @@ const userSchema = new mongoose.Schema({
     name: String,
     email: String,
     password: String,
-    phonenumber: String
+    phonenumber: String,
+    dob: String,
+    gender: String,
+    id: String,
+    des: String,
+    hospital: String
 })
 
 const User = new mongoose.model("User", userSchema)
 
 //Routes
 app.post("/login", (req, res)=> {
-    const { email, password} = req.body
+    const { email, password, des} = req.body
     User.findOne({ email: email}, (err, user) => {
         if(user){
             if(password === user.password ) {
-                res.send({message: "Login Successfull", user: user})
+                res.send({message: "Login Successfull", user: user , des:user.des})
             } else {
                 res.send({ message: "Password didn't match"})
             }
@@ -40,7 +45,7 @@ app.post("/login", (req, res)=> {
 }) 
 
 app.post("/register", (req, res)=> {
-    const { name, email, password, phonenumber} = req.body
+    const { name, email, password, phonenumber,dob,gender,id,des,hospital} = req.body
     User.findOne({email: email}, (err, user) => {
         if(user){
             res.send({message: "User already registerd"})
@@ -49,13 +54,21 @@ app.post("/register", (req, res)=> {
                 name,
                 email,
                 password,
-                phonenumber
+                phonenumber,
+                dob,
+                gender,
+                id,
+                des,
+                hospital
             })
             user.save(err => {
                 if(err) {
                     res.send(err)
                 } else {
-                    res.send( { message: "Successfully Registered, Please login now." })
+                    setTimeout((() => {
+ res.send( { message: "Successfully Registered, Please login now." })
+}), 2000)
+                    
                 }
             })
         }
