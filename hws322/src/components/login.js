@@ -1,11 +1,39 @@
-import React, { Component } from "react";
+import React, { Component ,useState} from "react";
 import { Link } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import back from './images/Pediatrician_DFM_01-01.svg'
 import ParticlesBg from 'particles-bg'
+import axios from "axios"
+import { useHistory } from "react-router-dom"
 
-class Login extends Component {
-  render() {
+const Login = ({ setLoginUser}) =>{
+   const history = useHistory()
+
+    const [ user, setUser] = useState({
+        email:"",
+        password:"",
+        des:""
+    })
+
+    const handleChange = e => {
+        const { name, value } = e.target
+        setUser({
+            ...user,
+            [name]: value
+        })
+    }
+
+    const login = () => {
+        axios.post("http://localhost:9002/login", user)
+        .then(res => {
+            alert(res.data.message)
+            setLoginUser(res.data.user)
+            if(res.data.des === "doctor")
+            {
+            history.push("/dochome")
+          }
+        })
+    }
     return (
 <div class="wave-container">
 <ParticlesBg type="polygon"  bg={true} />
@@ -24,27 +52,27 @@ class Login extends Component {
               <Link to="/signup">&nbsp;&nbsp;sign up? </Link>
             </p> 
             </div>
-            <form action="#" method="post">
+            
               <div class="form-group first">
-                <label for="username">Username</label>
-                <input type="text" class="form-control" id="username"></input>
+                <label for="username">Email</label>
+                <input type="text" class="form-control" id="username" name="email" value={user.email} onChange={handleChange}></input>
 
               </div>
               <div class="form-group last mb-4">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" id="password"></input>
+                <input type="password" class="form-control" id="password" name="password" value={user.password} onChange={handleChange}></input>
                 
               </div>
               
               <div class="d-flex mb-5 align-items-center">
                 <label class="control control--checkbox mb-0"><span class="caption">Remember me</span>
-                  <input type="checkbox" checked="checked"/>
+                  <input type="checkbox"/>
                   <div class="control__indicator"></div>
                 </label>
                 <span class="ml-auto"><a href="#" class="forgot-pass">Forgot Password</a></span> 
               </div>
 
-              <input type="submit" value="Log In" class="btn btn-block btn-primary"></input>
+              <input type="submit" value="Log In" class="btn btn-block btn-primary" onClick={login}></input>
              <center>
               <span class="d-block text-left my-4 text-muted">&mdash; or login with &mdash;</span>
               
@@ -60,7 +88,7 @@ class Login extends Component {
                 </a>
               </div>
               </center>
-            </form>
+           
             </div>
           </div>
           
@@ -74,6 +102,6 @@ class Login extends Component {
   
     );
   }
-}
+
 
 export default Login;

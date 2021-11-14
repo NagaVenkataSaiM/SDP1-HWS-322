@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import ParticlesBg from 'particles-bg'
 
-class Home extends Component {
-  render() {
+
+const Homepage = ({setLoginUser}) => {
      
     return (
 
@@ -32,6 +32,6 @@ class Home extends Component {
       </div>
     );
   }
-}
 
-export default Home;
+
+export default Homepage;

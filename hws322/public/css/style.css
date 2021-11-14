@@ -49,6 +49,16 @@ a {
 h2 {
   font-size: 20px; }
 
+.avatar {
+  position: absolute;
+  top: 45px;
+  right: 85px;
+  vertical-align: middle;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
 @media (max-width: 991.98px) {
   .content .bg {
     height: 500px; } }
@@ -225,6 +235,7 @@ h2 {
 .control--checkbox input:disabled:checked ~ .control__indicator {
   background-color: #7e0cf5;
   opacity: .2; }
+  
 .tabbing-content{
   width: 1550px;
   height: auto;
