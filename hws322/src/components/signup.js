@@ -16,7 +16,12 @@ const Signup=()=>{
         email:"",
         password:"",
         reEnterPassword: "",
-        phonenumber: ""
+        phonenumber: "",
+        dob: "",
+        gender:"",
+        id:"",
+        des:"",
+        hospital:""
     })
 
     const handleChange = e => {
@@ -28,7 +33,7 @@ const Signup=()=>{
     }
 
     const register = () => {
-        const { name, email, password, reEnterPassword ,phonenumber} = user
+        const { name, email, password, reEnterPassword ,phonenumber,dob,gender,id,des,hospital} = user
         if( name && email && password && (password === reEnterPassword)){
             axios.post("http://localhost:9002/register", user)
             .then( res => {
@@ -46,32 +51,37 @@ const Signup=()=>{
   const setFlagtoone=()=>{setFlag(1)}
   const setFlagtotwo=()=>{setFlag(2)}
   const setFlagtothree=()=>{setFlag(3)}
+  const setdoc=()=>{setUser({...user,des: "doctor"})}
+  const setstaff=()=>{setUser({...user,des: "staff"})}
+  const setpat=()=>{setUser({...user,des: "patient"})}
 
 if(flag===4){
   const buttonstyle={
       backgroundColor: "blueviolet",color: "white",borderRadius: 7,padding: "7px 15px",width: "200px",marginLeft: "25px"
     }
     const signuprowstyle={
-      display:"inline-block",marginLeft: "280px",marginTop: "250px"
+      display:"inline-block",marginLeft: "500px",marginTop: "400px"
     } 
   return(
     <div style={signuprowstyle}>
-       <Button style={buttonstyle} onClick={setFlagtoone} >Doctor</Button>
-        <Button style={buttonstyle} onClick={setFlagtotwo} >Staff</Button>
-        <Button style={buttonstyle} onClick={setFlagtothree}>Patient</Button>
-        <Button style={buttonstyle}><Link to="/dochome" >DocHome</Link> </Button>
-
+       <Button style={buttonstyle} onClick={()=>{setFlagtoone(); setdoc();}}  >Doctor</Button>
+        <Button style={buttonstyle} onClick={()=>{setFlagtotwo(); setstaff();}}  >Staff</Button>
+        <Button style={buttonstyle} onClick={()=>{setFlagtothree(); setpat();}} >Patient</Button>
 
     </div>
 
   );
 }
 if(flag===5){
+
   return(
+
     <div style={{marginTop: '300px'}}>
     <div>
+
       <Checkmark size='xxLarge' />
       <h1 style={{textAlign: "center", marginTop: '40px'}}><b>Yay, SignUp Successful!</b></h1>
+        
     </div>
     </div>
   );
@@ -86,23 +96,23 @@ if(flag===5){
               <div class="mb-4">
               <h3>SignUp Doctor, </h3>
             </div>
-            <form action="#" method="post">
+           
 
             <div class="form-group first">
                 <label for="did">Doctor ID</label>
-                <input type="number" class="form-control" id="did"></input>
+                <input type="number" name="id" value={user.id} class="form-control" id="did" onChange={ handleChange }></input>
               </div>
 
               <div class="form-group last mb-4">
                 <label for="hname">Hospital Name</label>
-                <input type="text" class="form-control" id="hname"></input>
+                <input type="text" name="hospital" value={user.hospital} class="form-control" id="hname" onChange={ handleChange }></input>
               </div>
 
             
               
-              <input type="submit" value="Sign Up" onClick={()=>{setFlag(5)}} class="btn btn-block btn-primary"></input>
+              <input type="submit" value="Sign Up" onClick={()=>{setFlag(5); register();}} class="btn btn-block btn-primary"></input>
             
-            </form>
+            
             </div>
           </div>
           
@@ -120,8 +130,7 @@ if(flag===5){
               <div class="mb-4">
               <h3>SignUp Staff, </h3>
             </div>
-            <form action="#" method="post">
-
+           
             <div class="form-group first">
                 <label for="did">Staff ID</label>
                 <input type="number" class="form-control" id="did"></input>
@@ -136,7 +145,7 @@ if(flag===5){
               
               <input type="submit" value="Sign Up" onClick={()=>{setFlag(5)}} class="btn btn-block btn-primary"></input>
             
-            </form>
+            
             </div>
           </div>
           
@@ -205,27 +214,27 @@ if(flag===5){
 
               <div class="form-group last mb-4">
               <small>Date of birth:</small>
-                <input type="date" class="form-control" id="dob"></input>
+                <input type="date" name="dob" value={user.dob} class="form-control" id="dob" onChange={ handleChange }></input>
               </div>
               
               <div class="d-flex mb-5 align-items-center">
                 <label class="control control--checkbox mb-0"><span class="caption">Male</span>
-                  <input type="checkbox"/>
+                  <input type="checkbox" name="gender" value="male" onChange={ handleChange } />
                   <div class="control__indicator"></div>
                 </label>&ensp;
                 <label class="control control--checkbox mb-0"><span class="caption">Female</span>
-                  <input type="checkbox" />
+                  <input type="checkbox" name="gender" value="female" onChange={ handleChange } />
                   <div class="control__indicator"></div>
                 </label>&ensp;
                 <label class="control control--checkbox mb-0"><span class="caption">Others</span>
-                  <input type="checkbox"/>
+                  <input type="checkbox" name="gender" value="other" onChange={ handleChange } />
                   <div class="control__indicator"></div>
                 </label>&ensp;
                 
               </div>
 
 
-              <button type="submit" value="Next" onClick={register} class="btn btn-block btn-primary">Next</button>
+              <button type="submit" value="Next" onClick={()=>{setFlag(4)}} class="btn btn-block btn-primary">Next</button>
             
             
             </div>

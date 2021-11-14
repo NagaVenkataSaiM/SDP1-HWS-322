@@ -1,19 +1,41 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Container } from "react-bootstrap";
+import Avatar from "./images/avatar2.png"
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from "react-bootstrap/DropdownButton";
 
 class DocHome extends Component {
   render() {
     return (
+      <div>
+     
+   <Dropdown>
+        <Dropdown.Toggle variant="success" style={{position:"fixed",right:"0"}}>
+          <img src={Avatar} alt="Avatar" class="avatar" />
+        </Dropdown.Toggle>
+        <Dropdown.Menu>
+          <Dropdown.Item href="#">
+            Home Page
+          </Dropdown.Item>
+          <Dropdown.Item href="#">
+            Settings
+          </Dropdown.Item>
+          <Dropdown.Item href="/login">
+            Logout
+          </Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>
        <div class="tabbing-content">
-    
     <ul class="nav nav-pills" role="tablist">
+
       <li class="nav-item">
         <a class="nav-link active" data-toggle="pill" href="#login">Appointments</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" data-toggle="pill" href="#regis">Lab Reports</a>
       </li>
+      
     </ul>
 
     
@@ -34,7 +56,9 @@ class DocHome extends Component {
         
       </div>
     </div>
+
   </div>
+ </div>
 
 
     );

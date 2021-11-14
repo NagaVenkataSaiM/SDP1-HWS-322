@@ -11,7 +11,8 @@ const Login = ({ setLoginUser}) =>{
 
     const [ user, setUser] = useState({
         email:"",
-        password:""
+        password:"",
+        des:""
     })
 
     const handleChange = e => {
@@ -27,7 +28,10 @@ const Login = ({ setLoginUser}) =>{
         .then(res => {
             alert(res.data.message)
             setLoginUser(res.data.user)
+            if(res.data.des === "doctor")
+            {
             history.push("/dochome")
+          }
         })
     }
     return (
