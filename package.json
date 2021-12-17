@@ -1,5 +1,5 @@
 {
   "scripts":{
-    "start":"cd hws322 && npm install && npm start"
+    "start":"cd hws322 && npm run build"
   }
 }
