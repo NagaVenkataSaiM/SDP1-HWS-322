@@ -1,6 +1,5 @@
 {
   "scripts":{
-    "start":"cd Backend && npm install && node server.js",
-    "heroku-postbuild:"cd .. && cd hws322 && npm install && npm start"
+    "start":"cd hws322 && npm install && npm start"
   }
 }
