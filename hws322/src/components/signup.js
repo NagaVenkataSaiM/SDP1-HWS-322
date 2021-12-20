@@ -1,6 +1,6 @@
 import Button from "@restart/ui/esm/Button";
 import React, { Component,useState } from "react";
-
+import logo from './images/klife-logo.png';
 import { Container } from "react-bootstrap";
 import doctor from './images/doctor_page.jpg'
 import { Link , useHistory} from "react-router-dom";
@@ -35,9 +35,10 @@ const Signup=()=>{
     const register = () => {
         const { name, email, password, reEnterPassword ,phonenumber,dob,gender,id,des,hospital} = user
         if( name && email && password && (password === reEnterPassword)){
-            axios.post("http://localhost:9002/register", user)
+            axios.post("https://vast-ravine-20529.herokuapp.com/register", user)
             .then( res => {
                 alert(res.data.message)
+                
                 history.push("/login")
             })
         } else {
@@ -81,7 +82,9 @@ if(flag===5){
 
       <Checkmark size='xxLarge' />
       <h1 style={{textAlign: "center", marginTop: '40px'}}><b>Yay, SignUp Successful!</b></h1>
-        
+      <center>
+        <img src={'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+'name='+user.name+'  '+'email:'+user.email}/>
+        </center>
     </div>
     </div>
   );
@@ -157,7 +160,14 @@ if(flag===5){
   else if(flag===0){
    
   return(
-
+  <div>
+<div class="navcont">
+        <img src={logo} class="img1"/>
+        <div class="navcont2">
+        <button onClick={()=> history.push("/")}>Home</button>
+       <button >Blog</button>
+        </div>
+        </div>
       <div class="content">
     <div class="container">
       
@@ -244,8 +254,9 @@ if(flag===5){
         
     </div>
   </div>  
-    );
+    
 
+          </div>
           </div>
 
   );  

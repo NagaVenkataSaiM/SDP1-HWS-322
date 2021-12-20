@@ -1,6 +1,7 @@
-import express from "express"
-import cors from "cors"
-import mongoose from "mongoose"
+var express=require('express');
+var cors=require('cors');
+var mongoose=require('mongoose')
+var port = process.env.PORT || 3000;
 
 const app = express()
 app.use(express.json())
@@ -26,7 +27,29 @@ const userSchema = new mongoose.Schema({
     hospital: String
 })
 
+const prescriptionSchema = new mongoose.Schema({
+    title: String
+})
+
 const User = new mongoose.model("User", userSchema)
+const Pescription =new mongoose.model("Prescription",prescriptionSchema)
+
+app.post("/docdes", (req,res)=> {
+    const {title} = req.body
+ const pescription = new Pescription({
+                title
+            })
+ pescription.save(err => {
+                if(err) {
+                    res.send(err)
+                } else {
+                    setTimeout((() => {
+ res.send( { message: "Successfully Registered, Please login now." })
+}), 2000)
+                    
+                }
+})
+})
 
 //Routes
 app.post("/login", (req, res)=> {
@@ -34,7 +57,8 @@ app.post("/login", (req, res)=> {
     User.findOne({ email: email}, (err, user) => {
         if(user){
             if(password === user.password ) {
-                res.send({message: "Login Successfull", user: user , des:user.des})
+                res.send({message: "Login Successfull", user: user , des:user.des,login: "true"})
+
             } else {
                 res.send({ message: "Password didn't match"})
             }
@@ -76,6 +100,6 @@ app.post("/register", (req, res)=> {
     
 }) 
 
-app.listen(9002,() => {
+app.listen(port,() => {
     console.log("BE started at port 9002")
 })

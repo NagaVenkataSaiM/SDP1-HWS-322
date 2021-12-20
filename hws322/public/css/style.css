@@ -36,12 +36,6 @@ h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
   font-family: "Roboto", sans-serif; }
 
-a {
-  -webkit-transition: .3s all ease;
-  -o-transition: .3s all ease;
-  transition: .3s all ease; }
-  a:hover {
-    text-decoration: none !important; }
 
 .content {
   padding: 7rem 0; }
@@ -274,6 +268,9 @@ h2 {
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.4);
   padding: 30px;
   margin-bottom: 50px;
+   display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 .tab-content button{
   border-radius: 15px;
@@ -281,4 +278,161 @@ h2 {
   margin: 0 auto;
   float: right;
 }
+.docdes-card2 {
+  position: absolute;
+  right: 0;
+width: 65%;
+height: 100%;
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+.docdes-card {
+  position: absolute;
+   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+ width: 30%;
+ height: 100%;
+  margin: auto;
+  text-align: center;
+  left: 0;
 
+}
+.docdes-card title {
+   color: grey;
+  font-size: 18px;
+}
+.docdes-card button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: purple;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+.docdes-card a {
+  text-decoration: none;
+  font-size: 22px;
+  color: black;
+}
+
+.docdes-card button:hover, a:hover {
+  opacity: 0.7;
+}
+.docdes-task {
+  background-color: white;
+  margin: 0.2rem 0rem 0.3rem 0rem;
+  border: 0.1rem solid black;
+  border-radius: 0.2rem;
+  padding: 0.5rem 0.2rem 0.5rem 2rem;
+}
+
+.docdes-task button {
+  margin: 0.2rem 0rem 0.1rem 0rem;
+  background-color: white;
+  border-radius: 0.2rem;
+  width: 100%;
+  border: 0.25rem solid black;
+  padding: 0.5rem 2.7rem;
+  border-radius: 0.3rem;
+  font-size: 1rem;
+}
+.docdes-card2 input {
+  position: absolute;
+  width: 90%;
+  left: 30px;
+  bottom: 30px;
+}
+ 
+    .todo-container {
+      background: rgb(41, 33, 33);
+      width: 40vw;
+      margin: 10em auto;
+      border-radius: 7px;
+      padding: 20px 10px;
+      color: white;
+      border: 3px solid rgb(36, 110, 194);
+    }
+    
+    .task {
+      border: 1px solid white;
+      border-radius: 5px;
+      padding: 0.5em;
+      margin: 0.5em;
+    }
+    
+    .task button{
+      background: rgb(12, 124, 251);
+      border-radius: 5px;
+      margin: 0px 5px;
+      padding: 3px 5px;
+      border: none;
+      cursor: pointer;
+      color: white;
+      float: right;
+    }
+    
+    .header {
+      margin: 0.5em;
+      font-size: 2em;
+      text-align: center;
+    }
+    
+    .create-task .input1 {
+      margin: 2.5em 2em;
+      width: 50%;
+      outline: none;
+      border: none;
+      padding: 0.7em;
+    }
+    .create-task .input2 {
+      margin: 2.5em 50em;
+      width: 20%;
+      outline: none;
+      border: none;
+      padding: 0.7em;
+    }
+    .navcont {
+  padding: 1px;
+  width: 100%;
+  height: 100px;
+  background-color: transparent;
+  position: relative;
+  top: 0;
+}
+.navcont img {
+ height:70px;
+ width:200px;
+ position:absolute;
+ left:2%;
+ top:10%;
+}
+.navcont2 {
+  width: 15%;
+  height: 40%;
+  position: absolute;
+  right: 5%;
+  top: 30%;
+  padding: 1px;
+  background-color: transparent;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+}
+.navcont2 a {
+  float: right;
+  
+  text-decoration: none;
+}
+.navcont2 button {
+  border-radius: 8px;
+  background-color: #6D69FE;
+  color: white;
+  width: 123px;
+  height: 45px;
+}
+    
+ 

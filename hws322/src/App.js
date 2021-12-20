@@ -4,6 +4,7 @@ import Home from "./components/home";
 import Signup from "./components/signup";
 import Login from "./components/login";
 import DocHome from "./components/dochome";
+import Docdes from "./components/docdes"
 
 function App() {
 
@@ -14,17 +15,20 @@ function App() {
         <Switch>
           <Route exact path="/">
             {
-              user && user._id ? <DocHome setLoginUser={setLoginUser} /> : <Home setLoginUser={setLoginUser}/>
+              user && user._id ? <DocHome  setLoginUser={setLoginUser} /> : <Home setLoginUser={setLoginUser}/>
             }
           </Route>
           <Route path="/login">
-            <Login setLoginUser={setLoginUser}/>
+            <Login setLoginUser={setLoginUser} />
           </Route>
           <Route path="/signup">
             <Signup />
           </Route>
            <Route path="/dochome">
-            <DocHome setLoginUser={setLoginUser}/>
+            <DocHome />
+          </Route>
+          <Route path="/docdes">
+            <Docdes />
           </Route>
         </Switch>
       </Router>

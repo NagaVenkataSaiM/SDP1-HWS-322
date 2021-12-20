@@ -5,9 +5,11 @@ import back from './images/Pediatrician_DFM_01-01.svg'
 import ParticlesBg from 'particles-bg'
 import axios from "axios"
 import { useHistory } from "react-router-dom"
+import logo from './images/klife-logo.png';
 
 const Login = ({ setLoginUser}) =>{
    const history = useHistory()
+   const [loginx,setLoginx] = useState(false)
 
     const [ user, setUser] = useState({
         email:"",
@@ -24,21 +26,31 @@ const Login = ({ setLoginUser}) =>{
     }
 
     const login = () => {
-        axios.post("http://localhost:9002/login", user)
+        axios.post("https://vast-ravine-20529.herokuapp.com/login", user)
         .then(res => {
             alert(res.data.message)
             setLoginUser(res.data.user)
+            
             if(res.data.des === "doctor")
             {
-            history.push("/dochome")
+              const data={loginv: true};
+
+            history.push({pathname:'/dochome',state: {data},});
           }
         })
     }
     return (
-<div class="wave-container">
+<div >
+<div class="navcont">
+        <img src={logo} class="img1"/>
+        <div class="navcont2">
+        <button onClick={()=> history.push("/")}>Home</button>
+       <button >Blog</button>
+        </div>
+        </div>
 <ParticlesBg type="polygon"  bg={true} />
-  <div class="content">
-    <div class="container">
+  <div class="content wave-container">
+    <div class="container ">
       <div class="row">
         <div class="col-md-6">
           <img src={back} alt="Image" class="img-fluid" />
